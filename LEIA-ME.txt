@@ -1,0 +1,161 @@
+============================================================
+  PROJETO PET SHOP - SISTEMA DE GESTÃO
+  Senai Maracanã - T.59/60 - Abril/2026
+  Aluno: Lucas
+  Professor: Anthony Freitas
+============================================================
+
+📌 AVISO IMPORTANTE PARA O PROFESSOR
+
+Professor, para rodar o projeto, utilizei a porta 3307 para
+o MySQL no application.properties. O banco de dados utilizado
+é o petshop_senai.
+
+============================================================
+
+📋 REQUISITOS PARA EXECUÇÃO
+
+1. Java JDK 17 ou superior instalado
+2. XAMPP com MySQL rodando na porta 3307
+   (Se seu MySQL estiver na porta padrão 3306, altere no
+    arquivo application.properties a linha:
+    spring.datasource.url=jdbc:mysql://localhost:3306/...)
+
+3. Maven (já incluso no projeto via mvnw)
+
+============================================================
+
+🚀 COMO RODAR O PROJETO
+
+PASSO 1 - Iniciar o MySQL
+- Abra o XAMPP Control Panel
+- Clique em "Start" no módulo MySQL
+- Verifique se está rodando na porta 3307
+
+PASSO 2 - Rodar o Backend (Spring Boot)
+Opção A - Pelo Spring Tools (STS):
+  1. Abra o STS
+  2. Importe o projeto: File > Import > Existing Maven Projects
+  3. Selecione a pasta do projeto
+  4. Clique com botão direito no projeto > Run As > Spring Boot App
+
+Opção B - Pelo terminal (CMD/PowerShell):
+  1. Abra o terminal na pasta do projeto
+  2. Execute: .\mvnw.cmd spring-boot:run
+  3. Aguarde até aparecer: "Started Application in X seconds"
+
+Opção C - Pelo JAR compilado:
+  1. Abra o terminal na pasta do projeto
+  2. Execute: .\mvnw.cmd clean package -DskipTests
+  3. Depois execute: java -jar target\petshop-0.0.1-SNAPSHOT.jar
+
+PASSO 3 - Acessar o Front-End
+- Abra o navegador e acesse:
+  http://localhost:8080/index.html
+
+============================================================
+
+🔗 ENDPOINTS DA API (Para testar no Postman)
+
+VETERINÁRIOS:
+  GET    http://localhost:8080/veterinarios          → Listar todos
+  GET    http://localhost:8080/veterinarios/1        → Buscar por ID
+  GET    http://localhost:8080/veterinarios/busca?nome=Silva → Buscar por nome
+  POST   http://localhost:8080/veterinarios          → Cadastrar
+  PUT    http://localhost:8080/veterinarios/1        → Atualizar
+  DELETE http://localhost:8080/veterinarios/1        → Deletar
+
+CLIENTES:
+  GET    http://localhost:8080/clientes
+  GET    http://localhost:8080/clientes/1
+  GET    http://localhost:8080/clientes/busca?nome=Joao
+  POST   http://localhost:8080/clientes
+  PUT    http://localhost:8080/clientes/1
+  DELETE http://localhost:8080/clientes/1
+
+PETS:
+  GET    http://localhost:8080/pets
+  GET    http://localhost:8080/pets/1
+  GET    http://localhost:8080/pets/busca?nome=Rex
+  POST   http://localhost:8080/pets
+  PUT    http://localhost:8080/pets/1
+  DELETE http://localhost:8080/pets/1
+
+SERVIÇOS:
+  GET    http://localhost:8080/servicos
+  GET    http://localhost:8080/servicos/1
+  GET    http://localhost:8080/servicos/busca?nome=Banho
+  POST   http://localhost:8080/servicos
+  PUT    http://localhost:8080/servicos/1
+  DELETE http://localhost:8080/servicos/1
+
+============================================================
+
+📁 ESTRUTURA DO PROJETO
+
+src/main/java/com/petshop/
+├── Application.java              → Classe principal
+├── model/
+│   ├── Cliente.java              → Entidade Cliente
+│   ├── Pet.java                  → Entidade Pet
+│   ├── Servico.java              → Entidade Serviço
+│   └── Veterinario.java          → Entidade Veterinário
+├── repository/
+│   ├── ClienteRepository.java    → Repository Cliente
+│   ├── PetRepository.java        → Repository Pet
+│   ├── ServicoRepository.java    → Repository Serviço
+│   └── VeterinarioRepository.java→ Repository Veterinário
+└── controller/
+    ├── ClienteController.java    → Controller Cliente (CRUD)
+    ├── PetController.java        → Controller Pet (CRUD)
+    ├── ServicoController.java    → Controller Serviço (CRUD)
+    └── VeterinarioController.java→ Controller Veterinário (CRUD)
+
+src/main/resources/
+├── application.properties        → Configurações do projeto
+└── static/index.html             → Front-End completo
+
+============================================================
+
+⚙️ CONFIGURAÇÕES DO BANCO DE DADOS
+
+- Banco: MySQL (XAMPP)
+- Porta: 3307
+- Nome do banco: petshop_senai
+- Usuário: root
+- Senha: (vazia)
+- Criação automática: ativada (createDatabaseIfNotExist=true)
+
+============================================================
+
+🖥️ FUNCIONALIDADES DO FRONT-END
+
+- Menu com 4 abas: Veterinário, Cliente, Pet, Serviço
+- Cadastro com validação de campos
+- Listagem em tabela com ID, dados e botões de ação
+- Busca por nome (parcial)
+- Busca por ID
+- Edição de registros (formulário inline)
+- Exclusão com confirmação
+- Select de UF + número para CRMV
+- Select de tipo de animal (Cachorro/Gato) antes da raça
+- Opção "Outro" para raças e serviços não listados
+- Máscaras para CPF e Telefone
+- Layout responsivo e organizado
+
+============================================================
+
+⚠️ OBSERVAÇÕES
+
+1. Se o MySQL do professor estiver na porta 3306 (padrão),
+   basta alterar no arquivo application.properties:
+   De: localhost:3307
+   Para: localhost:3306
+
+2. O banco de dados é criado automaticamente na primeira
+   execução (createDatabaseIfNotExist=true).
+
+3. As tabelas são atualizadas automaticamente pelo
+   Hibernate (ddl-auto=update).
+
+============================================================
